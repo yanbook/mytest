@@ -1,0 +1,32 @@
+name: Geph4 Self Hosting
+on: 
+  [push]
+  schedule:
+    - cron: '1 1 1 * *'
+
+#jobs 下面的 job1，job2 默认是独立进行的，提高效率.如需先后用need
+jobs:
+  Build-geph4-client:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install geph4-client
+      run: cargo install --locked geph4-client
+    - run: ls ~/.cargo/bin
+    - name: UP geph4-client
+      uses: actions/upload-artifact@v2
+      with:
+        name: geph4-client
+        path: ~/.cargo/bin/geph4-client
+
+  Build-geph4-exit: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: install geph4-exit
+      run: cargo install --locked geph4-exit
+    - run: ls ~/.cargo/bin
+    - name: UP geph4-exit
+      uses: actions/upload-artifact@v2
+      with:
+        name: geph4-exit
+        path: ~/.cargo/bin/geph4-exit
+        
