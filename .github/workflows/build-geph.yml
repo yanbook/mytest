@@ -2,6 +2,7 @@ name: Geph4 Self Hosting
 on: 
   #push:
   schedule:
+    workflow_dispatch:
     - cron: '1 1 1 * *'
 
 #jobs 下面的 job1，job2 默认是独立进行的，提高效率.如需先后用need
