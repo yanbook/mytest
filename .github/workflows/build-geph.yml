@@ -7,6 +7,8 @@ on:
 
 #jobs 下面的 job1，job2 默认是独立进行的，提高效率.如需先后用need
 jobs:
+
+
   Build-geph4-client:
     runs-on: ubuntu-latest
     steps:
@@ -20,17 +22,7 @@ jobs:
       with:
         name: geph4-client
         path: ~/.cargo/bin/geph4-client
-    - name: copying files to VPS
-      uses: appleboy/scp-action@master
-      with: 
-        host: ${{ secrets.SJ_HOST }}
-        username: ${{ secrets.SJ_USER }}
-        password: ${{ secrets.SJ_PASSWORD }}
-        source: "geph4-client"
-        target: "vps/docker-geph4-exit-self/app"
-#        strip_components: 1    
-
-
+  
 
 
   Build-geph4-exit: 
@@ -50,13 +42,22 @@ jobs:
         name: geph4-exit
         path: ~/.cargo/bin/geph4-exit
     
+
+  Copying files to VPS:
+    runs-on: ubuntu-latest
+    needs: [Build-geph4-client, Build-geph4-exit]
+    steps:
+    
+    - uses: actions/download-artifact@v2
+    - run: ls
+
     - name: copying files to VPS
       uses: appleboy/scp-action@master
       with: 
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
         password: ${{ secrets.SJ_PASSWORD }}
-        source: "geph4-exit"
+        source: "geph4-exit,geph4-client"
         target: "vps/docker-geph4-exit-self/app"
 #        strip_components: 1
 
