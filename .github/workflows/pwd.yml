@@ -10,5 +10,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: pwd
-    - uses: uses: actions/checkout@main
+    - uses: actions/checkout@main
     - run: pwd
