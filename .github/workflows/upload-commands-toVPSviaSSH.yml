@@ -1,0 +1,32 @@
+name: copying files && Remote Commands via SSH
+on: 
+  push:
+  workflow_dispatch:
+  #schedule:
+  #  - cron: '1 1 1 * *'
+
+jobs:
+  sshdeploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: creat file
+      run: |
+        echo hell1122 > test.txt
+        pwd
+        ls
+        cat test.txt
+        
+#    - name: copying files
+#      uses: appleboy/scp-action@master
+#      with: 
+#        host:
+
+
+
+#    - name: Remote Commands
+#        host: ${{ secrets.SJ_HOST }}
+#        user: ${{ secrets.SJ_USER }}
+#       pass: ${{ secrets.SJ_PASSWORD}}    
+
+        
