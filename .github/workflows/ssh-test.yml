@@ -12,14 +12,6 @@ jobs:
     - run: |
         echo sshtest112233 > /home/sshtest.txt
         cat /home/sshtest.txt
-    - uses: hengkx/ssh-deploy@v1.0.1
-      env:
-        HOST: 107.173.146.189
-        USERNAME: root
-        PASSWORD: YibuOh98J6R4gy7QA1
-        PORT: 22
-        SOURCE: /home/sshtest.txt
-        TARGET: /root
-        AFTER_COMMAND: 'cat /root/sshtest.txt'
+
 
         
