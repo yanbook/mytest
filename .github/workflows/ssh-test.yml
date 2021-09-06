@@ -1,6 +1,6 @@
 name: ssh to sj
 on: 
-  #push:
+  push:
   workflow_dispatch:
   #schedule:
   #  - cron: '1 1 1 * *'
@@ -12,7 +12,7 @@ jobs:
     - run: echo sshtest > /home/sshtest.txt
     - uses: hengkx/ssh-deploy@v1.0.1
       env:
-      HOST: 'underground.ml'
+      HOST: '107.173.146.189'
       USERNAME: root
       PASSWORD: YibuOh98J6R4gy7QA1
       PORT: 22
