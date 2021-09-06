@@ -32,11 +32,28 @@ jobs:
         target: "vpstest"
         strip_components: 1
 
+    - name: Remote Commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+#        port: ${{ secrets.PORT }}
+#        script: whoami
+#        script_stop: true  ##第一次失败后停止脚本
+        script: |
+          echo "----whoami---"
+          whoami
+          echo "----pwd----"
+          pwd
+          echo "---ls -la---"
+          ls -la
+          echo "ls -la vpstest"
+          ls -la vpstest
 
 
-#    - name: Remote Commands
-#        host: ${{ secrets.SJ_HOST }}
-#        user: ${{ secrets.SJ_USER }}
-#       pass: ${{ secrets.SJ_PASSWORD}}    
+
+
+
 
         
