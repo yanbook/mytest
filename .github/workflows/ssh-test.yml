@@ -15,14 +15,14 @@ jobs:
         echo hell1122 > sshtest.txt
         cat sshtest.txt
         
-    - name: ls -a via ssh
-      uses: fifsky/ssh-action@master
-      with:
-        command: |
-          cd /root
-          ls -lh
-        host: ${{ secrets.SJ_HOST }}
-        user: ${{ secrets.SJ_USER }}
-        pass: ${{ secrets.SJ_PASSWORD}}
+    - name: ssh
+      uses: hengkx/ssh-deploy@v1.0.1
+      env:
+        HOST: ${{ secrets.SJ_HOST }}
+        USERNAME: ${{ secrets.SJ_USER }}
+        PASSWORD: ${{ secrets.SJ_PASSWORD }}
+        SOURCE: '~/sshtest.txt'
+        TARGET: '/root'
+        AFTER_COMMAND: 'cat /root/sshtest.txt'
 
         
