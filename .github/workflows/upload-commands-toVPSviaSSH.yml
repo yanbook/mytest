@@ -12,15 +12,24 @@ jobs:
     - uses: actions/checkout@main
     - name: creat file
       run: |
-        echo hell1122 > test.txt
+        mkdir -p tests
+        echo hell1122 > tests/a.txt
+        echo bbbbbbbb > tests/b.txt
         pwd
+        echo "-------  ls  ------"
         ls
-        cat test.txt
+        echo "-------  ls test/  -----"
+        ls test/
         
-#    - name: copying files
-#      uses: appleboy/scp-action@master
-#      with: 
-#        host:
+    - name: copying files
+      uses: appleboy/scp-action@master
+      with: 
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+#        port: ${{ secrets.PORT }}
+        source: "tests/a.txt,tests/b.txt"
+        target: "vpstest"
 
 
 
