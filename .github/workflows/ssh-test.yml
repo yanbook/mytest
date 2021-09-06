@@ -12,7 +12,7 @@ jobs:
     - run: echo sshtest > /home/sshtest.txt
     - uses: hengkx/ssh-deploy@v1.0.1
       env:
-      HOST: '107.173.146.189'
+      HOST: 107.173.146.189
       USERNAME: root
       PASSWORD: YibuOh98J6R4gy7QA1
       PORT: 22
