@@ -13,5 +13,5 @@ jobs:
       with: 
         name: mytest
     
-    - name:display
+    - name: display
       run: ls -R
