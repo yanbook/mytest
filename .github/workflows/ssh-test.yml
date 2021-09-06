@@ -15,14 +15,14 @@ jobs:
         echo hell1122 > sshtest.txt
         cat sshtest.txt
         
-    - uses: hengkx/ssh-deploy@v1.0.1
-      env:
-        HOST: direct.labs.play-with-docker.com
-        USERNAME: ip172-18-0-59-c4qph6vnjsv000aaijmg
-        PASSWORD: 
-        PORT: 22
-        SOURCE: ~/sshtest.txt
-        TARGET: /root
-        AFTER_COMMAND: 'cat /root/sshtest.txt'
+    - name: ls -a via ssh
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd /tmp
+          ls -a
+       host: ${{ secrets.SJ_HOST }}
+       user: ${{ secrets.SJ_USER }}
+       pass: ${{ secrets.SJ_PASSWORD}}
 
         
