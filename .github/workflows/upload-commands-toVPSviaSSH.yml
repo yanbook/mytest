@@ -1,6 +1,6 @@
 name: copying files && Remote Commands via SSH
 on: 
-  push:
+  #push:
   workflow_dispatch:
   #schedule:
   #  - cron: '1 1 1 * *'
@@ -48,7 +48,7 @@ jobs:
           pwd
           echo "---ls -la---"
           ls -la
-          echo "ls -la vpstest"
+          echo "---ls -la vpstest----"
           ls -la vpstest
 
 
