@@ -11,17 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: install geph4-client
-      run: cargo install --locked geph4-client
-    - run: ls ~/.cargo/bin
-    - name: UP geph4-client
+      run: cargo install --locked geph4-client  
+    - run: |
+        ls ~/.cargo/bin
+        cp ~/.cargo/bin/geph4-client .
+    - name: upload-artifact geph4-client
       uses: actions/upload-artifact@v2
       with:
         name: geph4-client
         path: ~/.cargo/bin/geph4-client
-    
-    - run: |
-        echo "ls ~ client"
-        ls
+    - name: copying files to VPS
+      uses: appleboy/scp-action@master
+      with: 
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+        source: "geph4-client"
+        target: "vps/docker-geph4-exit-self/app"
+#        strip_components: 1    
+
 
 
 
@@ -36,13 +44,13 @@ jobs:
         ls ~/.cargo/bin
         cp ~/.cargo/bin/geph4-exit .
     
-    - name: UP geph4-exit
+    - name: upload-artifact geph4-exit
       uses: actions/upload-artifact@v2
       with:
         name: geph4-exit
         path: ~/.cargo/bin/geph4-exit
     
-    - name: copying files
+    - name: copying files to VPS
       uses: appleboy/scp-action@master
       with: 
         host: ${{ secrets.SJ_HOST }}
@@ -62,7 +70,3 @@ jobs:
         script: |
           cd vps/docker-geph4-exit-self
           sudo docker-compose restart
-
-    - run: |
-        echo "ls ~ exit"
-        ls
