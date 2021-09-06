@@ -16,11 +16,23 @@ jobs:
         cat sshtest.txt
         
     - name: ssh
-      uses: hengkx/ssh-deploy@v1.0.1
-      env:
-        HOST: ${{ secrets.SJ_HOST }}
-        USERNAME: ${{ secrets.SJ_USER }}
-        PASSWORD: ${{ secrets.SJ_PASSWORD }}
-        AFTER_COMMAND: 'ls /root'
+      uses: Creepios/sftp-action@v1.0.1
+      with:
+        host: ${{ secrets.SJ_HOST }}
+        port: 22
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+        localPath: '~/sshtest.txt'
+        remotePath: '/root'
+
+    - name: ls -a via ssh
+      uses: fifsky/ssh-action@master
+      with:
+        command: |
+          cd /root
+          cat sshtest.txt
+        host: ${{ secrets.SJ_HOST }}
+        user: ${{ secrets.SJ_USER }}
+        pass: ${{ secrets.SJ_PASSWORD}}    
 
         
