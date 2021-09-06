@@ -61,9 +61,9 @@ jobs:
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
         password: ${{ secrets.SJ_PASSWORD }}
-        source: "geph4-exit,geph4-client"
+        source: "geph"
         target: "vps/docker-geph4-exit-self/app"
-#        strip_components: 1
+        strip_components: 1
 
     - name: Remote Commands
       uses: appleboy/ssh-action@master
