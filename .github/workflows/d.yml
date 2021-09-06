@@ -29,7 +29,8 @@ jobs:
     needs: [job1, job2]
     steps:
     - uses: actions/download-artifact@v2
-
+      with:
+        path: txt
     - name: Display structure of downloaded files
       run: ls -R
 
@@ -39,6 +40,6 @@ jobs:
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
         password: ${{ secrets.SJ_PASSWORD }}
-        source: "a.txt,b.txt"
+        source: "txt"
         target: "fff"
-#        strip_components: 1
+        strip_components: 1
