@@ -43,7 +43,7 @@ jobs:
         path: ~/.cargo/bin/geph4-exit
     
 
-  Copying files to VPS:
+  Copying-files-to-VPS:
     runs-on: ubuntu-latest
     needs: [Build-geph4-client, Build-geph4-exit]
     steps:
