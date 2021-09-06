@@ -30,6 +30,7 @@ jobs:
 #        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "vpstest"
+        strip_components: 1
 
 
 
