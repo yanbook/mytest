@@ -21,8 +21,8 @@ jobs:
         command: |
           cd /tmp
           ls -a
-       host: ${{ secrets.SJ_HOST }}
-       user: ${{ secrets.SJ_USER }}
-       pass: ${{ secrets.SJ_PASSWORD}}
+        host: ${{ secrets.SJ_HOST }}
+        user: ${{ secrets.SJ_USER }}
+        pass: ${{ secrets.SJ_PASSWORD}}
 
         
