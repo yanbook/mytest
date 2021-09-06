@@ -9,7 +9,9 @@ jobs:
   sshdeploy:
     runs-on: ubuntu-latest
     steps:
-    - run: echo sshtest > /home/sshtest.txt
+    - run: |
+        echo sshtest112233 > /home/sshtest.txt
+        cat /home/sshtest.txt
     - uses: hengkx/ssh-deploy@v1.0.1
       env:
         HOST: 107.173.146.189
