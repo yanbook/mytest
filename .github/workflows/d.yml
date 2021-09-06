@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v2
       with: 
-        name: mytest
+        name: geph4-exit
     
     - name: display
       run: ls -R
