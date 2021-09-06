@@ -12,3 +12,6 @@ jobs:
     - run: pwd
     - uses: actions/checkout@main
     - run: pwd
+    - run: |
+        cd ~
+        pwd
