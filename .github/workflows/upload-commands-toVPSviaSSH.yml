@@ -9,7 +9,7 @@ jobs:
   sshdeploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: creat file
       run: |
         echo hell1122 > test.txt
