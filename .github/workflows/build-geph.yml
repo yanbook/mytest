@@ -18,6 +18,10 @@ jobs:
       with:
         name: geph4-client
         path: ~/.cargo/bin/geph4-client
+    
+    - run: |
+        echo "ls ~ client"
+        ls
 
 
 
@@ -58,3 +62,7 @@ jobs:
         script: |
           cd vps/docker-geph4-exit-self
           sudo docker-compose restart
+
+    - run: |
+        echo "ls ~ exit"
+        ls
