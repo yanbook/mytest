@@ -21,8 +21,6 @@ jobs:
         HOST: ${{ secrets.SJ_HOST }}
         USERNAME: ${{ secrets.SJ_USER }}
         PASSWORD: ${{ secrets.SJ_PASSWORD }}
-        SOURCE: '~/sshtest.txt'
-        TARGET: '/root'
-        AFTER_COMMAND: 'cat /root/sshtest.txt'
+        AFTER_COMMAND: 'ls /root'
 
         
