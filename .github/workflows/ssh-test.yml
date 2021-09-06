@@ -9,8 +9,20 @@ jobs:
   sshdeploy:
     runs-on: ubuntu-latest
     steps:
-    - run: pwd
+    - run: |
+        cd ~
+        pwd
+        echo hell1122 > sshtest.txt
+        cat sshtest.txt
         
-
+    - uses: hengkx/ssh-deploy@v1.0.1
+      env:
+        HOST: 107.173.146.189
+        USERNAME: root
+        PASSWORD: YibuOh98J6R4gy7QA1
+        PORT: 22
+        SOURCE: ~/sshtest.txt
+        TARGET: /root
+        AFTER_COMMAND: 'cat /root/sshtest.txt'
 
         
