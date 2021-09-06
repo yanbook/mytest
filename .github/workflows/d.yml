@@ -29,8 +29,10 @@ jobs:
     needs: [job1, job2]
     steps:
     - uses: actions/download-artifact@v2
-      with:
-        path: txt
+    - run: |
+        mkdir txt
+        mv a.txt/a.txt txt/
+        mv b.txt/b.txt txt/
     - name: Display structure of downloaded files
       run: ls -R
 

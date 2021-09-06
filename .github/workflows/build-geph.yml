@@ -49,7 +49,11 @@ jobs:
     steps:
     
     - uses: actions/download-artifact@v2
-    - run: ls
+    - run: |
+        mkdir geph
+        mv geph4-exit/geph4-exit geph/
+        mv geph4-client/geph4-client geph/
+    - run: ls -R
 
     - name: copying files to VPS
       uses: appleboy/scp-action@master
