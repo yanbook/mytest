@@ -18,8 +18,8 @@ jobs:
         pwd
         echo "-------  ls  ------"
         ls
-        echo "-------  ls test/  -----"
-        ls test/
+        echo "-------  ls tests/  -----"
+        ls tests/
         
     - name: copying files
       uses: appleboy/scp-action@master
