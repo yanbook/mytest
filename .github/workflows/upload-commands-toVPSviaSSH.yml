@@ -13,8 +13,8 @@ jobs:
     - name: creat file
       run: |
         mkdir -p tests
-        echo hell1122 > tests/a.txt
-        echo bbbbbbbb > tests/b.txt
+        echo aaaaaaa1 > tests/a.txt
+        echo bbbbbbbb2 > tests/b.txt
         pwd
         echo "-------  ls  ------"
         ls
