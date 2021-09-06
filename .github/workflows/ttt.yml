@@ -12,13 +12,8 @@ jobs:
     - uses: actions/checkout@main
     - name: creat file
       run: |
-        echo aaaaaaa1 > ~/a.txt
-        echo bbbbbbbb2 > ~/b.txt
-        pwd
-        echo "-------  ls  ------"
+        echo aaaaaaa1 > a.txt
         ls
-        echo "-------  ls ~/  -----"
-        ls ~/
         
     - name: copying files
       uses: appleboy/scp-action@master
@@ -27,7 +22,7 @@ jobs:
         username: ${{ secrets.SJ_USER }}
         password: ${{ secrets.SJ_PASSWORD }}
 #        port: ${{ secrets.PORT }}
-        source: "~/a.txt,~/b.txt"
+        source: "a.txt"
         target: "vpstest"
 #        strip_components: 1
 

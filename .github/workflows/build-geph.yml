@@ -19,15 +19,42 @@ jobs:
         name: geph4-client
         path: ~/.cargo/bin/geph4-client
 
+
+
   Build-geph4-exit: 
     runs-on: ubuntu-latest
     steps:
+    
     - name: install geph4-exit
       run: cargo install --locked geph4-exit
-    - run: ls ~/.cargo/bin
+    
+    - run: |
+        ls ~/.cargo/bin
+        cp ~/.cargo/bin/geph4-exit .
+    
     - name: UP geph4-exit
       uses: actions/upload-artifact@v2
       with:
         name: geph4-exit
         path: ~/.cargo/bin/geph4-exit
-        
+    
+    - name: copying files
+      uses: appleboy/scp-action@master
+      with: 
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+        source: "geph4-exit"
+        target: "vps/docker-geph4-exit-self/app"
+#        strip_components: 1
+
+    - name: Remote Commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        password: ${{ secrets.SJ_PASSWORD }}
+        script_stop: true  ##第一次失败后停止脚本
+        script: |
+          cd vps/docker-geph4-exit-self
+          sudo docker-compose restart
