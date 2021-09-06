@@ -1,4 +1,4 @@
-name: download artifact
+name: pwd
 on: 
   #push:
   workflow_dispatch:
