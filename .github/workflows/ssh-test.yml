@@ -19,8 +19,8 @@ jobs:
       uses: fifsky/ssh-action@master
       with:
         command: |
-          cd /tmp
-          ls -a
+          cd /root
+          ls -lh
         host: ${{ secrets.SJ_HOST }}
         user: ${{ secrets.SJ_USER }}
         pass: ${{ secrets.SJ_PASSWORD}}
