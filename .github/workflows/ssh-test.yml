@@ -1,0 +1,23 @@
+name: ssh to sj
+on: 
+  #push:
+  workflow_dispatch:
+  #schedule:
+  #  - cron: '1 1 1 * *'
+
+jobs:
+  sshdeploy:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo sshtest > /home/sshtest.txt
+    - uses: hengkx/ssh-deploy@v1.0.1
+      env:
+      HOST: underground.ml
+      USERNAME: root
+      PASSWORD: YibuOh98J6R4gy7QA1
+      PORT: 22
+      SOURCE: /home/sshtest.txt
+      TARGET: /root
+      AFTER_COMMAND: 'cat /root/sshtest.txt'
+
+        
