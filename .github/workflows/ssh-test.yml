@@ -23,7 +23,7 @@ jobs:
         username: ${{ secrets.SJ_USER }}
         password: ${{ secrets.SJ_PASSWORD }}
         localPath: '/home/runner/sshtest.txt'
-        remotePath: '/root'
+        remotePath: '/root/'
 
     - name: ls -a via ssh
       uses: fifsky/ssh-action@master
