@@ -50,8 +50,8 @@ jobs:
     
     - uses: actions/download-artifact@v2
       #with:
-      #  name:name  #没有path 下载到当前目录
-      #  path:path  #没有name下载全部文件，但是会给每个文件添加一个同文件名的目录
+      #  name:name  #没有name下载全部文件，但是会给每个文件添加一个同文件名的目录
+      #  path:path  #没有path 下载到当前目录
     - run: |
         mkdir geph
         mv geph4-exit/geph4-exit geph/
