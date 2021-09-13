@@ -9,11 +9,8 @@ jobs:
   telegram-notify:
     name: telegram notify
     runs-on: ubuntu-latest
-    env: 
-      time: ${{ 'Mona the Octocat' }
     steps:
     - uses: actions/checkout@master
-    - run: $time=`date`
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       with:
@@ -21,4 +18,4 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           The ${{ github.event_name }} event triggered final step.
-          $time echo This event is a pull request that had an assignee removed.
+          echo This event is a pull request that had an assignee removed.
