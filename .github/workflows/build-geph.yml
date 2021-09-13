@@ -60,7 +60,8 @@ jobs:
       with: 
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
-        password: ${{ secrets.SJ_PASSWORD }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
         source: "geph"
         target: "vps/docker-geph4-exit-self/app"
         strip_components: 1
@@ -70,9 +71,10 @@ jobs:
       with:
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
-        password: ${{ secrets.SJ_PASSWORD }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
         script_stop: true  ##第一次失败后停止脚本
         script: |
           cd vps/docker-geph4-exit-self
           chmod +x app/geph4-client app/geph4-exit
-          sudo docker-compose restart
+          docker-compose restart
