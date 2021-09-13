@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - run: echo `date` > time.txt
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       with:
@@ -19,3 +20,4 @@ jobs:
         message: |
           The ${{ github.event_name }} event triggered final step.
           echo This event is a pull request that had an assignee removed.
+        message_file: time.txt
