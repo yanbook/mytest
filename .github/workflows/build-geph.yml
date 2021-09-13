@@ -81,3 +81,12 @@ jobs:
           cd vps/docker-geph4-exit-self
           chmod +x app/geph4-client app/geph4-exit
           docker-compose restart
+
+    - name: send custom message with args
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          build geph is DONE via github Ations.
+          please test it.

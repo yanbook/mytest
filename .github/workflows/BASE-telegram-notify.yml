@@ -1,6 +1,6 @@
 name: BASE telegram notify
 on: 
-  push:
+  #push:
   workflow_dispatch:
   #schedule:
   #  - cron: '1 1 1 * *'
@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - run: now=`date`
     - name: send custom message with args
       uses: appleboy/telegram-action@master
       with:
@@ -18,4 +19,4 @@ jobs:
         token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
           The ${{ github.event_name }} event triggered final step.
-          echo This event is a pull request that had an assignee removed.
+          $now echo This event is a pull request that had an assignee removed.
