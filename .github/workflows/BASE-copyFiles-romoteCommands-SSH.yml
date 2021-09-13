@@ -1,4 +1,4 @@
-name: copying files && Remote Commands via SSH
+name: BASE COPY files && Remote Commands via SSH
 on: 
   #push:
   workflow_dispatch:
