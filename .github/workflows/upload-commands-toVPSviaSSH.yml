@@ -26,7 +26,8 @@ jobs:
       with: 
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
-        password: ${{ secrets.SJ_PASSWORD }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
 #        port: ${{ secrets.PORT }}
         source: "tests/a.txt,tests/b.txt"
         target: "vpstest"
@@ -37,7 +38,8 @@ jobs:
       with:
         host: ${{ secrets.SJ_HOST }}
         username: ${{ secrets.SJ_USER }}
-        password: ${{ secrets.SJ_PASSWORD }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
 #        port: ${{ secrets.PORT }}
 #        script: whoami
 #        script_stop: true  ##第一次失败后停止脚本
