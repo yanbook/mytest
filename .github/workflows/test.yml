@@ -14,11 +14,12 @@ jobs:
         git clone https://github.com/geph-official/geph4.git
         cd geph4
         cargo build --release --locked --manifest-path=Cargo.toml
+        cp ./target/release/geph4-client ~
     - name: upload-artifact geph4-client
       uses: actions/upload-artifact@v2
       with:
         name: geph4-client
-        path: ./target/release/geph4-client
+        path: ~/geph4-client
 
   Build-geph4-exit:
     runs-on: ubuntu-latest
@@ -28,11 +29,60 @@ jobs:
         git clone https://github.com/geph-official/geph4-exit.git
         cd geph4-exit
         cargo build --release --locked --manifest-path=Cargo.toml
+        cp ./target/release/geph4-exit ~
     - name: upload-artifact geph4-exit
       uses: actions/upload-artifact@v2
       with:
         name: geph4-exit
-        path: ./target/release/geph4-exit
+        path: ~/geph4-exit
+  
+  Copying-files-to-VPS:
+    runs-on: ubuntu-latest
+    needs: [Build-geph4-client, Build-geph4-exit]
+    steps:
+    
+    - uses: actions/download-artifact@v2
+      #with:
+      #  name:name  #没有name下载全部文件，但是会给每个文件添加一个同文件名的目录
+      #  path:path  #没有path 下载到当前目录
+    - run: |
+        mkdir geph
+        mv geph4-exit/geph4-exit geph/
+        mv geph4-client/geph4-client geph/
+    - run: ls -R
+
+    - name: copying files to VPS
+      uses: appleboy/scp-action@master
+      with: 
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
+        source: "geph"
+        target: "vps/docker-geph4-exit-self/app"
+        strip_components: 1
+
+    - name: Remote Commands
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SJ_HOST }}
+        username: ${{ secrets.SJ_USER }}
+        #password: ${{ secrets.SJ_PASSWORD }}
+        key: ${{ secrets.SJ_KEY }}
+        script_stop: true  ##第一次失败后停止脚本
+        script: |
+          cd vps/docker-geph4-exit-self
+          chmod +x app/geph4-client app/geph4-exit
+          docker-compose restart
+
+    - name: send custom message with args
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          build geph is DONE via github Ations.
+          please test it. 
   
 
 
