@@ -6,15 +6,37 @@ on:
   #  - cron: '1 1 1 * *'
 
 jobs:
-  build-geph4-client:
+  Build-geph4-client:
     runs-on: ubuntu-latest
     steps:
-    - name: git&build geph4--client
+    - name: git&build geph4-client
       run: |
         git clone https://github.com/geph-official/geph4.git
         cd geph4
         cargo build --release --locked --manifest-path=Cargo.toml
-        echo "---------ls ---------------"
-        ls
-        echo "---------ls -R  -----------"
-        ls -R
+    - name: upload-artifact geph4-client
+      uses: actions/upload-artifact@v2
+      with:
+        name: geph4-client
+        path: ./target/release/geph4-client
+
+  Build-geph4-exit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: git&build geph4-exit
+      run: |
+        git clone https://github.com/geph-official/geph4-exit.git
+        cd geph4-exit
+        cargo build --release --locked --manifest-path=Cargo.toml
+    - name: upload-artifact geph4-exit
+      uses: actions/upload-artifact@v2
+      with:
+        name: geph4-exit
+        path: ./target/release/geph4-exit
+  
+
+
+
+
+
+
