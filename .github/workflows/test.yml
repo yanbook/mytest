@@ -14,8 +14,8 @@ jobs:
         git clone https://github.com/geph-official/geph4.git
         ls 
         cd geph4
-        cargo build --release --locked --manifest-path=geph4-client/Cargo.toml
-        cargo build --release --locked --manifest-path=geph4-vpn-helper/Cargo.toml
+        cargo build --release --locked --manifest-path=Cargo.toml
+        cargo build --release --locked --manifest-path=Cargo.toml
         echo "---------ls ---------------"
         ls
         echo "---------ls bin-----------"
