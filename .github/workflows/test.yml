@@ -9,11 +9,12 @@ jobs:
   build-geph4-client:
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - name: git&build geph4--client
+      run: |
         git clone https://github.com/geph-official/geph4.git
         cd geph4
         cargo build --release --locked --manifest-path=Cargo.toml
         echo "---------ls ---------------"
         ls
-        echo "---------ls bin-----------"
-        ls bin
+        echo "---------ls -R  -----------"
+        ls -R
