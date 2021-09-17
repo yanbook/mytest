@@ -6,15 +6,12 @@ on:
   #  - cron: '1 1 1 * *'
 
 jobs:
-  job1:
+  build-geph4-client:
     runs-on: ubuntu-latest
     steps:
-    - run: pwd
     - run: |
         git clone https://github.com/geph-official/geph4.git
-        ls 
         cd geph4
-        cargo build --release --locked --manifest-path=Cargo.toml
         cargo build --release --locked --manifest-path=Cargo.toml
         echo "---------ls ---------------"
         ls
